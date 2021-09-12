@@ -1,0 +1,22 @@
+{
+    "books": [
+      {
+        "url": "",
+        "author": "John Smith",
+        "title": "JavaScript",
+        "price": 5000
+      },
+      {
+        "url": "",
+        "author": "Paul Johnson",
+        "title": "React",
+        "price": 7000
+      },
+      {
+        "url": "",
+        "author": "James Harris",
+        "title": "Redux",
+        "price": 6500
+      }
+    ]
+}
