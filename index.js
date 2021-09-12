@@ -2,31 +2,56 @@ console.log('Hello world!');
 const database = [
     {
         title: 'JavaScript',
-        src: '#',
-        author: 'Example1',
-        price: 'number 1'
+        src: './image/javascript.png',
+        author: 'Sergey Sayenko',
+        price: '1000$'
     },
     {
         title: 'React',
-        src: '#',
-        author: 'Example2',
-        price: 'number 2'
+        src: './image/react.png',
+        author: 'Sergey Sayenko',
+        price: '2000$'
     },
     {
         title: 'Redux',
-        src: '#',
-        author: 'Example3',
-        price: 'number 3'
+        src: './image/redux.jpg',
+        author: 'Sergey Sayenko',
+        price: '3500$'
+    }, 
+    {
+        title: 'TypeScript',
+        src: './image/typescript.png',
+        author: 'Sergey Sayenko',
+        price: '5000$'
     }
 ];
+const parent = document.querySelector('.slides-list')
 
 database.forEach(item => {
     console.log(item.title);
 })
 
+function displayElements() {
+    database.map(item => {  
+        const element = document.createElement('div');
+        element.classList.add('current__slide');
+        
+        element.innerHTML = `
+            <h4 class='slide__text'>${item.title}</h4>
+            <img class='slide_img' src=${item.src} alt='logo'><br />
+            <span>Author: ${item.author}</span>
+            <h5 class='slide__text' >${item.price}</h5>
+        `;
 
-// Slider 
-const slideList = document.querySelectorAll('.current__slide');
+        parent.append(element);
+    })
+}
+
+displayElements();
+
+//Slider
+
+const list = document.querySelectorAll('.current__slide');
 const prev = document.querySelector('.slider__btn-prev');
 const next = document.querySelector('.slider__btn-next');
 const text = document.querySelector('.num__slide span');
@@ -36,43 +61,40 @@ let currentNumberSlide = 1;
 function correctNumDisplay(length, num) {
     if (length < 10) {
         text.textContent = `0${num}`
+    } else {
+        text.textContent = num
     }
-}
+};
+correctNumDisplay(list.length, currentNumberSlide);
 
-function showSlide(list, length) {
-    if (currentNumberSlide > list.length) {
-        currentNumberSlide = 1
-    }
-
+function showSlide(elemList) {
+    if (currentNumberSlide > elemList.length) {
+        currentNumberSlide = 1;
+    } 
     if (currentNumberSlide < 1) {
-        currentNumberSlide = list.length
+        currentNumberSlide = elemList.length;
     }
-    
-    list.forEach(slide => {
-        slide.style.display = 'none';
+
+    elemList.forEach(elem => {
+        elem.style.display = 'none';
     });
-    
-    list[currentNumberSlide - 1].style.display = 'block';
-    
-    if (length < 10) {
-        text.textContent = `0${currentNumberSlide}`
-    }
+
+    elemList[currentNumberSlide - 1].style.display = 'block'
+
 }
-
-correctNumDisplay(slideList.length, currentNumberSlide);
-showSlide(slideList, slideList.length);
-
+showSlide(list);
 
 prev.addEventListener('click', () => {
     currentNumberSlide--;
-    showSlide(slideList, slideList.length);
+    showSlide(list);
+    correctNumDisplay(list.length, currentNumberSlide);
 });
 
 next.addEventListener('click', () => {
     currentNumberSlide++;
-    showSlide(slideList, slideList.length);
-})
-
+    showSlide(list);
+    correctNumDisplay(list.length, currentNumberSlide);
+});
 
 
 

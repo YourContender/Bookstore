@@ -5,9 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
     <title>Bookstore</title>
 </head>
-<body>
+<body> 
     <div class='container'>
         <div class='header'>
 
@@ -16,15 +29,11 @@
             </div>
             
             <div class='btn__header'>
-                <button>Download books</button>
+                <button class='btn__header-add-link'>Download books</button>
             </div>
             <div class='btn__header-remove'>
-                <button>Remove list</button>
+                <button class='btn__header-remove-link'>Remove list</button>
             </div>
-
-        </div>
-
-        <div class='books__list'>
 
         </div>
 
@@ -34,35 +43,18 @@
             </div>
             <div class='slider__btn'>
                 <div class='slider__btn-prev'>
-                    <button><<<</button>
+                    <button class='btn-prev'>prev</button>
                 </div>
                 <div class='num__slide'>
                     <span id='current'>01</span>
                 </div>
                 <div class='slider__btn-next'>
-                    <button>>>></button>
+                    <button class='btn-next'>next</button>
                 </div>
             </div>
             <div class='slider'>
                 <div class='slides-list'>
-                    <div class='current__slide'>
-                        <h4>title first</h4>
-                        <img src='./image/javascript.png' alt='img1'>
-                        <span>Author first</span>
-                        <h5>Price first</h5>
-                    </div>
-                    <div class='current__slide'>
-                        <h4>title second</h4>
-                        <img src='./image/react.png' alt='img2'>
-                        <span>Author second</span>
-                        <h5>Price second</h5>
-                    </div>
-                    <div class='current__slide'>
-                        <h4>title third</h4>
-                        <img src='./image/redux.jpg' alt='img3'>
-                        <span>Author third</span>
-                        <h5>Price third</h5>
-                    </div>
+                    
                 </div>
             </div>
         </div>

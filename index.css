@@ -1,29 +1,124 @@
+body {
+    background-color: rgb(224, 235, 235);
+}
+
+#current {
+    width: 10px;
+    font-size: 20px;
+    font-family: 'Permanent Marker', cursive;    
+}
+
 .container {
-    background-color: rgb(192, 192, 226);
+    background-color: rgb(203, 207, 203);
     margin: 0 auto;
     height: 700px;
-    width: 700px;
+    width: 1200px;
     position: block;
+    margin-top: 15px;
+    border-radius: 7px;
 }
 
 .header {
     display: flex;
-    align-items: center;   
+    align-items: center;
+    padding: 0;
+    margin: 0;   
+    height: 100px;
 }
 
 .menu__header {
     margin-left: 15px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 30px;
 }
 
 .btn__header {
-    margin-left: 460px;
+    /* margin-left: 460px; */
+    margin-left: auto;
+    margin-right: 0;
 }
 
+.btn__header-add-link,
+.btn__header-remove-link {
+    background: none;
+    border: 2px solid black;
+    height: 70px;
+    width: 200px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+    font-family: 'Permanent Marker', cursive;
+    border-radius: 7px;
+}
+
+.btn-prev:hover, 
+.btn-next:hover,
+.btn__header-add-link:hover,
+.btn__header-remove-link:hover {
+    background-color: rgb(134, 134, 218);
+    color: white
+}
+
+.btn-prev:active, 
+.btn-next:active,
+.btn__header-add-link:active,
+.btn__header-remove-link:active {
+    background-color: rgb(32, 32, 133);
+    color: white
+}
+
+.btn-prev, 
+.btn-next {
+    background: none;
+    border: 2px solid black;
+    height: 50px;
+    width: 150px;
+    margin-left: 10px;
+    margin-right: 5px;
+    font-size: 20px;
+    font-family: 'Permanent Marker', cursive;
+    border-radius: 7px;
+}
+
+
 /* slider */
+.container__slider {
+    background-color: rgb(203, 207, 203);
+    height: 770px;
+}
 
 .slider__btn {
     display: flex;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
+}
+
+.slides-list {
+    width: 650px;
+    height: 500px;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    background-color:rgb(170, 170, 187);
+    border-radius: 7px;
+}
+
+.slide_img {
+    width: 250px;
+    border-radius: 10px;
+    max-height: 400px;
+}
+
+.slide__text {
+    font-size: 35px;
+    font-family: 'Alfa Slab One', cursive;
+    color: rgb(77, 55, 55);
+    -webkit-text-stroke: .4px black;
+}
+
+.current__slide span {
+    font-size: 20px;
+    font-family: 'Akaya Kanadaka', cursive;
+    font-family: 'Alfa Slab One', cursive;
 }
