@@ -1,30 +1,44 @@
 console.log('Hello world!');
+
+// database
 const database = [
     {
+        // flag: false,
         title: 'JavaScript',
         src: './image/javascript.png',
         author: 'Sergey Sayenko',
-        price: '1000$'
+        price: '1000$',
+        description: `
+            <span>- Desc1</span><br />
+            <span>- Desc2</span><br />
+            <span>- Desc3</span><br />
+            <span>- Desc4</span><br />
+        `
     },
     {
+        // flag: false,
         title: 'React',
         src: './image/react.png',
         author: 'Sergey Sayenko',
         price: '2000$'
     },
     {
+        // flag: false,
         title: 'Redux',
         src: './image/redux.jpg',
         author: 'Sergey Sayenko',
         price: '3500$'
     }, 
     {
+        // flag: false,
         title: 'TypeScript',
         src: './image/typescript.png',
         author: 'Sergey Sayenko',
         price: '5000$'
     }
 ];
+
+// create slider 
 const parent = document.querySelector('.slides-list')
 
 database.forEach(item => {
@@ -100,60 +114,79 @@ next.addEventListener('click', () => {
 
 
 // Modal
-// const btn__header = document.querySelector('.btn__header');
-// const btn__remove = document.querySelector('.btn__header-remove');
+const btn__header = document.querySelector('.btn__header-add-link');
 
-// btn__header.addEventListener('click', () => {
-//     console.log('button work!');
-//     render(books_list)
-// })
+const modal = document.querySelector('.modal__window');
+modal.style.display = 'none';
 
-// btn__remove.addEventListener('click', () => {
-//     console.log('click delete content');
-//     const parent = document.querySelector('.books__list');
-//     const element = document.querySelectorAll('.current__item');
-//     console.log('delete: ', element);
-//     element.forEach(elem => {
-//         elem.remove();
-//     })
-// })
+const products = document.querySelector('.modal__products');
+const close = document.querySelector('.close__modal');
 
-// const books_list = [
-//     {
-//         logo: './image/javascript.png',
-//         title: 'JavaScript',
-//         author: 'Sergey Sayenko',
-//         price: 5000
-//     },
-//     {
-//         logo: './image/react.png',
-//         title: 'React',
-//         author: 'Sergey Sayenko',
-//         price: 5000
-//     },
-//     {
-//         logo: './image/redux.jpg',
-//         title: 'Redux',
-//         author: 'Sergey Sayenko',
-//         price: 5000
-//     },
-// ];
+// create function add products to basket
+const basket = document.querySelector('.btn__header-remove-link');
+const basket_window = document.querySelector('.modal__basket-window');
+basket_window.style.display = 'none';
+const test =  document.querySelector('.test')
 
-// function render(obj) {
-//     const parent = document.querySelector('.books__list');
+btn__header.addEventListener('click', () => {
+    createBuyList();
+    btn__header.setAttribute('disabled', true);
+});
+
+
+close.addEventListener('click', () => {
+    modal.style.display = 'none';
+    btn__header.removeAttribute('disabled');
+
+    document.querySelectorAll('.buy__book').forEach(elem => {
+        elem.remove();
+    })
     
-//     obj.map(item => {
-//         const element = document.createElement('div');
-//         element.classList.add('current__item');
-        
-//         element.innerHTML = `
-//             <img src=${item.logo} width='150px'>
-//             <h3 class="elem__title">${item.title}</h3>
-//             <div class="elem__author">${item.author}</div>
-//             <div class="elem__price">${item.price}</div>
-//         `;
-//         parent.append(element);
-//     })
-// }
+})
 
+function createBuyList() {
 
+    if (document.querySelectorAll('.buy__book').length === 0) {
+        modal.style.display = 'block';
+
+        database.map(elem => {
+            const buy = document.createElement('div');
+            buy.classList.add('buy__book');
+            buy.innerHTML = `
+                <div class='shop__book'>
+                    <div>
+                        <img class='modal__shop-src' src=${elem.src} alt='logo'><br />
+                    </div>
+                    <div class='shop__content'>
+                        <h4 class='modal__shop-title'>${elem.title}</h4>
+                        <span>Author: ${elem.author}</span>
+                        <h5 class='modal__shop-price' >${elem.price}</h5>
+                        <button class='shop__buy-btn'>buy now</button>
+                    </div>
+                    <div class='shop__description'>
+                        ${elem.description}
+                    </div>
+                </div>
+            `;
+            products.append(buy);
+        });
+    } 
+
+    // click => buy products => add to basket
+    const buy_btn = document.querySelectorAll('.shop__content');
+    console.log(buy_btn);
+
+    buy_btn.forEach(elem => {
+        elem.addEventListener('click', () => {
+            console.log(elem.parentNode);
+            basket_window.innerHTML += elem.parentNode;
+
+            basket_window.append(elem.parentNode)
+        })
+    })
+}
+
+basket.addEventListener('click', () => {
+    modal.style.display = 'none';
+    basket_window.style.display = 'block';
+})
