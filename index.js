@@ -3,7 +3,7 @@ console.log('Hello world!');
 // database
 const database = [
     {
-        // flag: false,
+        flag: false,
         title: 'JavaScript',
         src: './image/javascript.png',
         author: 'Sergey Sayenko',
@@ -16,21 +16,21 @@ const database = [
         `
     },
     {
-        // flag: false,
+        flag: false,
         title: 'React',
         src: './image/react.png',
         author: 'Sergey Sayenko',
         price: '2000$'
     },
     {
-        // flag: false,
+        flag: false,
         title: 'Redux',
         src: './image/redux.jpg',
         author: 'Sergey Sayenko',
         price: '3500$'
     }, 
     {
-        // flag: false,
+        flag: false,
         title: 'TypeScript',
         src: './image/typescript.png',
         author: 'Sergey Sayenko',
@@ -111,8 +111,6 @@ next.addEventListener('click', () => {
 });
 
 
-
-
 // Modal
 const btn__header = document.querySelector('.btn__header-add-link');
 
@@ -126,7 +124,6 @@ const close = document.querySelector('.close__modal');
 const basket = document.querySelector('.btn__header-remove-link');
 const basket_window = document.querySelector('.modal__basket-window');
 basket_window.style.display = 'none';
-const test =  document.querySelector('.test')
 
 btn__header.addEventListener('click', () => {
     createBuyList();
@@ -176,12 +173,10 @@ function createBuyList() {
     const buy_btn = document.querySelectorAll('.shop__content');
     console.log(buy_btn);
 
-    buy_btn.forEach(elem => {
+    buy_btn.forEach((elem, i) => {
         elem.addEventListener('click', () => {
-            console.log(elem.parentNode);
-            basket_window.innerHTML += elem.parentNode;
-
-            basket_window.append(elem.parentNode)
+            console.log(elem, i);
+            database[i].flag = true;
         })
     })
 }
@@ -189,4 +184,35 @@ function createBuyList() {
 basket.addEventListener('click', () => {
     modal.style.display = 'none';
     basket_window.style.display = 'block';
+    addBookInBasket();
+});
+
+document.querySelector('.close__modal-basket').addEventListener('click', () => {
+    basket_window.style.display = 'none';
+    
+    document.querySelectorAll('.current__book').forEach(elem => {
+        elem.remove()
+    })
 })
+
+function addBookInBasket() {
+    database.filter((elem) => {
+        if (elem.flag) {
+            const basked_add = document.createElement('div');
+            basked_add.classList.add('current__book')
+            basked_add.innerHTML = `
+                <div class='shop__book'>
+                    <div>
+                        <img class='modal__shop-src' src=${elem.src} alt='logo'><br />
+                    </div>
+                    <div class='shop__content'>
+                        <h4 class='modal__shop-title'>${elem.title}</h4>
+                        <span>Author: ${elem.author}</span>
+                        <h5 class='modal__shop-price' >${elem.price}</h5>
+                    </div>
+                </div>
+            `;
+            basket_window.append(basked_add);
+        }
+    })
+}
